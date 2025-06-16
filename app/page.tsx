@@ -31,6 +31,8 @@ export default function Home() {
     setGoals(newGoals);
   };
 
+  const doneCount = goals.filter((goal) => goal.done).length;
+
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-xl border border-gray-200">
       <h2 className="text-xl font-semibold mb-4 text-center">OneDayGoals</h2>
@@ -69,6 +71,12 @@ export default function Home() {
           );
         })}
       </ul>
+
+      <div className="mt-9 text-center font-bold">
+        {goals.length === 0
+          ? "まだ目標がありません"
+          : ` ${doneCount} / ${goals.length} 達成🎉`}
+      </div>
     </div>
   );
 }
