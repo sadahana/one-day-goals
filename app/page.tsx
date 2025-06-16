@@ -10,7 +10,7 @@ type Goal = {
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const [goals, setGoals] = useState<Goal[]>([]);
+  const [goalList, setGoalList] = useState<Goal[]>([]);
 
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,18 +21,18 @@ export default function Home() {
       text: input,
       done: false,
     };
-    setGoals([...goals, newGoal]);
+    setGoalList([...goalList, newGoal]);
     setInput("");
   };
 
   const toggleGoalDone = (goalId: string): void => {
-    const newGoals = goals.map((goal) =>
+    const newGoalList = goalList.map((goal) =>
       goal.id === goalId ? { ...goal, done: !goal.done } : goal
     );
-    setGoals(newGoals);
+    setGoalList(newGoalList);
   };
 
-  const doneCount = goals.filter((goal) => goal.done).length;
+  const doneCount = goalList.filter((goal) => goal.done).length;
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-xl border border-gray-200">
@@ -52,7 +52,7 @@ export default function Home() {
       </form>
 
       <ul className="space-y-2">
-        {goals.map((goal) => {
+        {goalList.map((goal) => {
           return (
             <li key={goal.id} className="flex items-center gap-2">
               <input
@@ -74,9 +74,9 @@ export default function Home() {
       </ul>
 
       <div className="mt-9 text-center font-bold">
-        {goals.length === 0
+        {goalList.length === 0
           ? "まだ目標がありません"
-          : ` ${doneCount} / ${goals.length} 達成🎉`}
+          : ` ${doneCount} / ${goalList.length} 達成🎉`}
       </div>
     </div>
   );
