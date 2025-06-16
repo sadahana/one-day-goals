@@ -24,6 +24,13 @@ export default function Home() {
     setInput("");
   };
 
+  const toggleGoalDone = (id: number): void => {
+    const newGoals = goals.map((goal) =>
+      goal.id === id ? { ...goal, done: !goal.done } : goal
+    );
+    setGoals(newGoals);
+  };
+
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-xl border border-gray-200">
       <h2 className="text-xl font-semibold mb-4 text-center">OneDayGoals</h2>
@@ -42,11 +49,25 @@ export default function Home() {
       </form>
 
       <ul className="space-y-2">
-        {goals.map((goal) => (
-          <li key={goal.id}>
-            <span>{goal.text}</span>
-          </li>
-        ))}
+        {goals.map((goal) => {
+          return (
+            <li key={goal.id} className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={goal.done}
+                onChange={() => toggleGoalDone(goal.id)}
+                className="w-5 h-5"
+              />
+              <span
+                className={`text-lg ${
+                  goal.done ? "line-through text-gray-400" : ""
+                }`}
+              >
+                {goal.text}
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
