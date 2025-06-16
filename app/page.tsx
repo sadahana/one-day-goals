@@ -55,19 +55,21 @@ export default function Home() {
         {goalList.map((goal) => {
           return (
             <li key={goal.id} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={goal.done}
-                onChange={() => toggleGoalDone(goal.id)}
-                className="w-5 h-5"
-              />
-              <span
-                className={`text-lg ${
-                  goal.done ? "line-through text-gray-400" : ""
-                }`}
-              >
-                {goal.text}
-              </span>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={goal.done}
+                  onChange={() => toggleGoalDone(goal.id)}
+                  className="w-5 h-5"
+                />
+                <span
+                  className={`text-lg ${
+                    goal.done ? "line-through text-gray-400" : ""
+                  }`}
+                >
+                  {goal.text}
+                </span>
+              </label>
             </li>
           );
         })}
