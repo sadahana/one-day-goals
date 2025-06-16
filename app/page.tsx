@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 type Goal = {
-  id: number;
+  id: string;
   text: string;
   done: boolean;
 };
@@ -14,9 +14,10 @@ export default function Home() {
 
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (input.trim() === "") return;
 
     const newGoal = {
-      id: new Date().getTime(),
+      id: crypto.randomUUID(),
       text: input,
       done: false,
     };
@@ -24,9 +25,9 @@ export default function Home() {
     setInput("");
   };
 
-  const toggleGoalDone = (id: number): void => {
+  const toggleGoalDone = (goalId: string): void => {
     const newGoals = goals.map((goal) =>
-      goal.id === id ? { ...goal, done: !goal.done } : goal
+      goal.id === goalId ? { ...goal, done: !goal.done } : goal
     );
     setGoals(newGoals);
   };
