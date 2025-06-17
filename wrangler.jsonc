@@ -1,6 +1,6 @@
 {
   "main": ".open-next/worker.js",
-  "name": "one-day-goals",
+  "name": "one-day-goals-workers",
   "compatibility_date": "2025-06-17",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
